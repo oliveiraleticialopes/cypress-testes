@@ -23,3 +23,25 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+// cypress/support/commands.js
+Cypress.Commands.add('fazerLogin', (dados) => {
+    cy.fixture("config.json").then((url)=> {
+      cy.request({
+        method: 'POST',
+        url: `${url.servidor}${url.login}`,
+        body: dados
+      }).then((response) => {
+        expect(response.status).to.eq(200);
+        Cypress.env('token', response.body.token);
+      });
+    });
+});
+  
+// Cypress.Commands.add('criarcpf', () => {
+//     let resultado = '';
+//     for (let i = 0; i < 11; i++) {
+//         resultado += Math.floor(Math.random() * 10);
+//     }
+//     return resultado;
+// });
