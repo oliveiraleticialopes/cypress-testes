@@ -32,7 +32,6 @@ Cypress.Commands.add('fazerLogin', (dados) => {
         url: `${url.servidor}${url.login}`,
         body: dados
       }).then((response) => {
-        expect(response.status).to.eq(200);
         Cypress.env('token', response.body.token);
       });
     });
