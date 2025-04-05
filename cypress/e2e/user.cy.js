@@ -22,9 +22,12 @@ it('criar usuário com sucesso', () => {
           Authorization: Cypress.env('token'),
         },
         body: dados
-      }).then((response) => {
+      }).then((response) => {//.shoud fica realizando tentativas
         expect(response.status).to.eq(201);
-        
+        expect(response.body).to.have.property('id');
+        expect(response.mail).to.eq(dados.mail);
+        expect(response.cpf).to.eq(dados.cpf);
+        expect(response.fullname).to.eq(dados.fullname);
       });
     });
   });
