@@ -1,6 +1,4 @@
-import { faker } from '@faker-js/faker';
-
-
+import { faker } from '@faker-js/faker';//Trocar para chance
 
 before(() => {
   const dados = {
